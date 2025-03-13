@@ -6,7 +6,8 @@ Lumi is a powerful made with nextcord as a Discord bot developed by Thai develop
 - **Prefix commands** with dynamic prefix support  
 - **Admin & Mod commands** for server management  
 - **Audit Log tracking** with detailed logs  
-- **Customizable settings** to fit different communities  
+- **Customizable settings** to fit different communities
+- **Cute command** such and `!emote` you can have fun with your friend! 
 - Lightweight and optimized for performance  
 
 ## 🚀 How to Use  
