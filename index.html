@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumi - Discord Bot</title>
+    <style>
+        :root {
+            --dark: #1a1a2e;
+            --dark-secondary: #16213e;
+            --pink: #ff69b4;
+            --pink-light: #ffb3d9;
+            --purple: #9370DB;
+            --text: #f2f2f2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-secondary), var(--dark));
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-glow {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--purple);
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--pink);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            margin-left: 20px;
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-glow {
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--pink);
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(147, 112, 219, 0.3);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+        }
+        
+        .feature-card h3 {
+            color: var(--pink-light);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            line-height: 1.6;
+        }
+        
+        .commands {
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .commands h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--pink-light);
+        }
+        
+        .command {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--pink);
+        }
+        
+        .command h3 {
+            color: var(--pink);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: var(--dark-secondary);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--pink);
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(to right, var(--pink), var(--purple), var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            animation: rainbow 3s linear infinite;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                margin-left: 0;
+                margin-top: 1rem;
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-glow"></div>
+        <div class="logo-container">
+            <img src="https://cdn.discordapp.com/avatars/1330479419441152061/3f3a0806f2b334d2a5098f202c715cb7.png?size=1024" alt="Lumi" class="logo">
+            <h1>Lumi</h1>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <div class="hero-glow"></div>
+            <h2>Your Friendly Discord <span class="rainbow-text">Companion</span></h2>
+            <p>Lumi is a versatile Discord bot designed to brighten up your server with fun commands, moderation tools, and helpful utilities. With a cute interface and powerful features, Lumi is the perfect addition to any Discord community.</p>
+            <a href="https://discord.com/oauth2/authorize?client_id=1330479419441152061" class="btn">Add to Discord</a>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <h3>Fun Commands</h3>
+                <p>Enjoy a variety of fun commands to keep your server entertained! From memes and games to cute animal pictures, Lumi has it all.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Moderation Tools</h3>
+                <p>Keep your server safe with powerful moderation tools. Manage users, delete messages, and set up auto-moderation with ease.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Custom Responses</h3>
+                <p>Create custom commands and responses tailored to your server's unique needs and culture.</p>
+            </div>
+        </section>
+        
+        <section class="commands">
+            <h2>Popular Commands</h2>
+            
+            <div class="command">
+                <h3>!help</h3>
+                <p>Displays a list of all available commands and how to use them.</p>
+            </div>
+            
+            <div class="command">
+          <h3>!emote (emote) [@user-mention]</h3>
+                <p>Use funny emote on someone such and kick and more</p>
+            </div>
+            
+            <div class="command">
+                <h3>/petpet</h3>
+                <p>Pet anyone you want with their user id!</p>
+            </div>
+            
+            <div class="command">
+                <h3>!weather [location]</h3>
+                <p>Gets the current weather forecast for any location. (coming soon!)</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/x2super/lumi">GitHub</a>
+            <a href="https://discord.gg/snowxd">Support Server</a>
+        </div>
+        <p>© 2025 Lumi Bot. All rights reserved.</p>
+    </footer>
+</body>
+</html>
